@@ -1,10 +1,18 @@
 <script>
-  import Funny from './Funny.svelte';
-  import MissionPossible from './MissionPossible.svelte';
-  let fontSize = 150;
-  let color = 'greenish';
+  import Fun from './Fun.svelte';
+  import Cool from './Cool.svelte';
 </script>
 
-<h1>Font Size: {fontSize}</h1>
-<MissionPossible {color} />
-<Funny {fontSize} />
+<h1>Hello Svelte Developer</h1>
+<Cool />
+<h2>You Rock!!!</h2>
+<Fun />
+
+<style>
+  h1 {
+    color: red;
+  }
+  h2 {
+    color: blue;
+  }
+</style>
