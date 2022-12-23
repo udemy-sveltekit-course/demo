@@ -1,18 +1,15 @@
 <script>
-  import Fun from './Fun.svelte';
-  import Cool from './Cool.svelte';
+  let name = 'Ash';
+  let fontSize = 30;
+  let disabled = true;
+  setTimeout(() => {
+    name = 'Carson';
+  }, 1000);
 </script>
 
 <h1>Hello Svelte Developer</h1>
-<Cool />
-<h2>You Rock!!!</h2>
-<Fun />
-
-<style>
-  h1 {
-    color: red;
-  }
-  h2 {
-    color: blue;
-  }
-</style>
+<input type="range" bind:value={fontSize} />
+<h2 style="font-size: {fontSize}px">Font Size: {fontSize}px</h2>
+<h2>Hello {name}</h2>
+<input type="text" bind:value={name} />
+<button {disabled}>Click Me</button>
