@@ -1,21 +1,25 @@
 <script>
-  let colorList = ['red', 'green', 'blue', 'purple'];
-  let color = '';
-  function addColor() {
-    if (color !== '' && !colorList.includes(color)) {
-      colorList = [color, ...colorList];
-      color = '';
-    } else {
-      alert('Color must be present and not exist in the list.');
-    }
+  const url = 'https://zenquotes.io/api/random';
+  let promiseQuote = getQuote();
+  async function getQuote() {
+    const response = await fetch(url);
+    const [quote] = await response.json();
+    return quote;
+  }
+
+  function refreshQuote() {
+    promiseQuote = getQuote();
   }
 </script>
 
-<ul>
-  {#each colorList as color, index (color)}
-    <li>{index + 1}. {color}</li>
-  {/each}
-</ul>
+<h1>Quotes</h1>
 
-<input type="text" bind:value={color} />
-<button on:click={addColor}>Add Color</button>
+{#await promiseQuote}
+  <h2>Awaiting Promise</h2>
+{:then quote}
+  <h2>{quote.q}</h2>
+  <h3>{quote.a}</h3>
+{:catch e}
+  <h2>{e.message}</h2>
+{/await}
+<button on:click={refreshQuote}>New Quote</button>
