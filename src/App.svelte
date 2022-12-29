@@ -1,9 +1,9 @@
 <script>
-  import LifeCycle from './LifeCycle.svelte';
+  import GeoLocation from './GeoLocation.svelte';
   let show = false;
 </script>
 
 <input type="checkbox" bind:checked={show} />
 {#if show}
-  <LifeCycle />
+  <GeoLocation />
 {/if}
