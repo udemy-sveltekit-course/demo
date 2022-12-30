@@ -1,8 +1,29 @@
 <script>
-  import exStore, { store1 } from './stores/ex.store';
-  setTimeout(() => {
-    store1.set(100);
-  }, 2000);
+  let show = false;
+  function exampleAction(node) {
+    const contextFunc = (e) => {
+      e.preventDefault();
+      alert('Right Click');
+    };
+    node.addEventListener('contextmenu', contextFunc);
+    return {
+      destroy() {
+        console.log('destroy was called');
+        node.removeEventListener('contextmenu', contextFunc);
+      },
+    };
+  }
 </script>
 
-<h1>{$exStore}</h1>
+<input type="checkbox" bind:checked={show} />
+{#if show}
+  <div use:exampleAction />
+{/if}
+
+<style>
+  div {
+    width: 300px;
+    height: 300px;
+    border: solid black 1px;
+  }
+</style>
