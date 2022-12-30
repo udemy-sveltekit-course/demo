@@ -6,9 +6,7 @@
   }, 2000);
 
   setTimeout(() => {
-    countStore.update((n) => {
-      return n * 100;
-    });
+    countStore.multipleBy(100);
   }, 3000);
 
   const unsub = countStore.subscribe((n) => {
@@ -19,15 +17,11 @@
   });
 
   function add() {
-    countStore.update((n) => {
-      return n + 1;
-    });
+    countStore.addOne();
   }
 
   function minus() {
-    countStore.update((n) => {
-      return n - 1;
-    });
+    countStore.minusOne();
   }
 </script>
 
