@@ -1,34 +1,16 @@
 <script>
-  import { onDestroy } from 'svelte';
-  import countStore from './stores/count.store';
-  const unsub = countStore.subscribe((n) => {
-    console.log(n, 'count store');
-  });
-
-  function add() {
-    countStore.addOne();
-  }
-
-  function minus() {
-    countStore.minusOne();
-  }
-
-  //   setTimeout(() => {
-  //     countStore.set(2000);
-  //   }, 2000);
-
-  //   setTimeout(() => {
-  //     countStore.update((n) => {
-  //       return n + 300;
-  //     });
-  //   }, 2000);
-
-  onDestroy(() => {
-    unsub();
-  });
+  import {
+    storeOne,
+    storeTwo,
+    storeSumEven,
+    storeOneEven,
+  } from './stores/derived.store';
 </script>
 
-<h1>{$countStore}</h1>
-<button on:click={add}>+</button>
-<button on:click={minus}>-</button>
-<button on:click={() => countStore.multiplyByThree()}>time 3</button>
+<h2>Sum of store is even: {$storeSumEven}</h2>
+
+<h3>Store One: {$storeOne}</h3>
+<input type="range" bind:value={$storeOne} min="0" max="10" />
+<h3>Store Two: {$storeTwo}</h3>
+<input type="range" bind:value={$storeTwo} min="0" max="10" />
+<h1>Store One Even: {$storeOneEven}</h1>
