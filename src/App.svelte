@@ -6,11 +6,11 @@
   });
 
   function add() {
-    countStore.update((n) => n + 1);
+    countStore.addOne();
   }
 
   function minus() {
-    countStore.update((n) => n - 1);
+    countStore.minusOne();
   }
 
   //   setTimeout(() => {
@@ -31,3 +31,4 @@
 <h1>{$countStore}</h1>
 <button on:click={add}>+</button>
 <button on:click={minus}>-</button>
+<button on:click={() => countStore.multiplyByThree()}>time 3</button>
